@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Rock-Paper_Scissor</title>
+    <!-- <script src="app.js"></script> -->
+</head>
+
+<body>
+
+    <header>
+        <h1>ROCK PAPER SCISSORS</h1>
+    </header>
+    <main>
+        <div class="content">
+            <p id="res" style="font-size:30px; font-weight: bolder;"></p>
+            <h3>First to score 5 points wins the game</h3>
+        </div>
+        <div class="fight">
+            <article style="display: flex;flex-direction: column; justify-content: center;align-items: center;">
+                <img src="./images/question-mark.png" alt="question-mark" id="Player1">
+                <p id="yP"> </p>
+            </article>
+            <article style="display: flex;flex-direction: column; justify-content: center;align-items: center;">
+                <img src="./images/question-mark.png" alt="question-mark" id="computer1">
+                <p id="oP"> </p>
+            </article>
+        </div>
+        <div class="buttons">
+            <article id="rock"><img src="./images/rock.png" alt="Rock"></article>
+            <article id="paper"><img src="./images/paper.png" alt="Paper"></article>
+            <article id="scissor"><img src="./images/scissor.png" alt="Scissor"></article>
+        </div>
+
+        <script>
+            const res = document.getElementById("res");
+            let def = document.createTextNode("Choose your weapon");
+            res.appendChild(def)
+            let num = 0
+            let computer = 0;
+            let score1 = document.createTextNode(`Player: ${num}`);
+            yP.appendChild(score1)
+            const oP = document.getElementById("oP");
+            let score2 = document.createTextNode(`Computer: ${computer}`);
+            oP.appendChild(score2)
+
+
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * max);
+            }
+            function gameLogic(yourChoice, computerChoice) {
+                if (yourChoice == computerChoice) {
+                    return "It's a tie!";
+                } else if (yourChoice == 0 && computerChoice == 2) {
+                    num++;
+                    return "You won!";
+                } else if (yourChoice == 1 && computerChoice == 0) {
+                    num++;
+                    return "You won!";
+                } else if (yourChoice == 2 && computerChoice == 1) {
+                    num++;
+                    return "You won!";
+                } else {
+                    computer++;
+                    return "Computer won!"
+                }
+            }
+            // console.log();
+            function update(def) {
+                res.innerHTML = def;
+                yP.innerHTML = `Player: ${num}`;
+                oP.innerHTML = `Computer: ${computer}`;
+            }
+            if(num<5 || computer<5){
+                const rockButton = document.getElementById("rock");
+                rockButton.addEventListener('click', (e) => {
+                    let computerChoice = getRandomInt(3);
+                    if (computerChoice == 0) {
+                        document.getElementById("computer1").src = "./images/rock.png";
+                    } else if (computerChoice == 1) {
+                        document.getElementById("computer1").src = "./images/paper.png";
+                    } else {
+                        document.getElementById("computer1").src = "./images/scissor.png";
+                    }
+                    let yourChoice = 0;
+                    def = gameLogic(yourChoice, computerChoice);
+                    document.getElementById("Player1").src = "./images/rock.png";
+                    update(def);
+                })
+                const paperButton = document.getElementById("paper");
+                paperButton.addEventListener('click', (e) => {
+                    let computerChoice = getRandomInt(3);
+                    if (computerChoice == 0) {
+                        document.getElementById("computer1").src = "./images/rock.png";
+                    } else if (computerChoice == 1) {
+                        document.getElementById("computer1").src = "./images/paper.png";
+                    } else {
+                        document.getElementById("computer1").src = "./images/scissor.png";
+                    }
+                    let yourChoice = 1;
+                    def = gameLogic(yourChoice, computerChoice);
+                    document.getElementById("Player1").src = "./images/paper.png";
+                    update(def);
+                })
+                const scissorButton = document.getElementById("scissor");
+                scissorButton.addEventListener('click', (e) => {
+                    let computerChoice = getRandomInt(3);
+                    if (computerChoice == 0) {
+                        document.getElementById("computer1").src = "./images/rock.png";
+                    } else if (computerChoice == 1) {
+                        document.getElementById("computer1").src = "./images/paper.png";
+                    } else {
+                        document.getElementById("computer1").src = "./images/scissor.png";
+                    }
+                    let yourChoice = 2;
+                    def = gameLogic(yourChoice, computerChoice);
+                    document.getElementById("Player1").src = "./images/scissor.png";
+                    update(def);
+                })
+            }else{
+                if(num>=5) alert("you win");
+                if(computer>=5) alert("ypu lose");
+            }
+
+           
+        </script>
+    </main>
+    <footer>
+        <h2>Copyright © 2024 Ayush Gupta</h2>
+    </footer>
+
+</body>
+
+</html>
